@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <MultiProcMIDL>true</MultiProcMIDL>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <DiagnosticsFormat>Column</DiagnosticsFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+      <StringPooling>true</StringPooling>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <ConformanceMode>true</ConformanceMode>
+      <UseUnicodeForAssemblerListing>true</UseUnicodeForAssemblerListing>
+      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
+      <DisableAnalyzeExternal>true</DisableAnalyzeExternal>
+      <ErrorReporting>None</ErrorReporting>
+      <AdditionalOptions>/Zc:__cplusplus /Zc:externConstexpr /Zc:inline /Zc:lambda /Zc:strictStrings /Zc:throwingNew /Zc:enumTypes /Zc:templateScope /volatile:iso /utf-8 /Gw /bigobj %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link />
+    <Link>
+      <LinkErrorReporting>NoErrorReport</LinkErrorReporting>
+    </Link>
+    <Midl>
+      <WarningLevel>4</WarningLevel>
+    </Midl>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>
