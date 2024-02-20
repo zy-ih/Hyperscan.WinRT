@@ -14,8 +14,8 @@
     <AppContainerApplication>false</AppContainerApplication>
     <ApplicationType>Windows Store</ApplicationType>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
-    <WindowsTargetPlatformVersion Condition=" '$(WindowsTargetPlatformVersion)' == '' ">10.0.22621.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformMinVersion>10.0.17763.0</WindowsTargetPlatformMinVersion>
+    <WindowsTargetPlatformVersion Condition=" '$(WindowsTargetPlatformVersion)' == '' ">10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformMinVersion>10.0.19041.0</WindowsTargetPlatformMinVersion>
     <DesktopCompatible>true</DesktopCompatible>
     <UseWinUI>true</UseWinUI>
     <CppWinRTProjectLanguage>C++/WinRT</CppWinRTProjectLanguage>
@@ -31,10 +31,6 @@
       <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug|ARM64">
-      <Configuration>Debug</Configuration>
-      <Platform>ARM64</Platform>
-    </ProjectConfiguration>
     <ProjectConfiguration Include="Release|Win32">
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
@@ -42,10 +38,6 @@
     <ProjectConfiguration Include="Release|x64">
       <Configuration>Release</Configuration>
       <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release|ARM64">
-      <Configuration>Release</Configuration>
-      <Platform>ARM64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Configuration">
@@ -76,9 +68,6 @@
     <Import Project="VCCommon.props" />
     <Import Project="VCx86.props" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <Import Project="VCCommon.props" />
-  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="VCCommon.props" />
     <Import Project="VCx86.props" />
@@ -87,20 +76,11 @@
     <Import Project="VCCommon.props" />
     <Import Project="VCx86.props" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <Import Project="VCCommon.props" />
-  </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="VCCommon.props" />
     <Import Project="VCx86.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">
-    <TargetName>$(RootNamespace)</TargetName>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">
-    <TargetName>$(RootNamespace)</TargetName>
-  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <TargetName>$(RootNamespace)</TargetName>
   </PropertyGroup>
@@ -132,11 +112,15 @@
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Debug'">
     <ClCompile>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdcpplatest</LanguageStandard>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdcpplatest</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)'=='Release'">
     <ClCompile>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">stdcpplatest</LanguageStandard>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Release|x64'">stdcpplatest</LanguageStandard>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -144,13 +128,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BlockScanner.h" />
+    <ClInclude Include="Compiler.h" />
+    <ClInclude Include="ExpressionExtended.h" />
+    <ClInclude Include="ExpressionInfo.h" />
+    <ClInclude Include="Global.h" />
+    <ClInclude Include="MatchEventArgs.h" />
+    <ClInclude Include="Pattern.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="PlatformInfo.h" />
+    <ClInclude Include="Settings.h" />
+    <ClInclude Include="VectorScanner.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BlockScanner.cpp" />
+    <ClCompile Include="Compiler.cpp" />
+    <ClCompile Include="ExpressionExtended.cpp" />
+    <ClCompile Include="ExpressionInfo.cpp" />
+    <ClCompile Include="Global.cpp" />
+    <ClCompile Include="MatchEventArgs.cpp" />
+    <ClCompile Include="Pattern.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="PlatformInfo.cpp" />
+    <ClCompile Include="Settings.cpp" />
+    <ClCompile Include="VectorScanner.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Hyperscan.WinRT.def" />

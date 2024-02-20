@@ -25,6 +25,36 @@
     <ClCompile Include="pch.cpp">
       <Filter>Precompiled Files</Filter>
     </ClCompile>
+    <ClCompile Include="Compiler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ExpressionExtended.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ExpressionInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MatchEventArgs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Pattern.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlatformInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Settings.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Global.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="BlockScanner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="VectorScanner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Hyperscan.WinRT.def" />
@@ -40,6 +70,36 @@
   <ItemGroup>
     <ClInclude Include="pch.h">
       <Filter>Precompiled Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Compiler.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ExpressionExtended.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ExpressionInfo.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MatchEventArgs.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Pattern.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PlatformInfo.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Global.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Settings.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BlockScanner.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorScanner.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

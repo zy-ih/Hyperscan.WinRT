@@ -1,4 +1,139 @@
 namespace Hyperscan
 {
-    
+    static runtimeclass Settings
+    {
+        static void SetAllocator(String moduleName, String allocProcName, String freeProcName);
+    }
+
+    [flags]
+    enum CompileFlags
+    {
+        None = 0,
+        Caseless = 1,
+        DotAll = 2,
+        Multiline = 4,
+        SingleMatch = 8,
+        AllowEmpty = 16,
+        UTF8 = 32,
+        UCP = 64,
+        PreFilter = 128,
+        SOMLeftMost = 256,
+        Combination = 512,
+        Quiet = 1024,
+    };
+     
+    [flags]
+    enum CompileMode
+    {
+        Block = 1,
+        Stream = 2,
+        Vectored = 4,
+        SOMHorizonLarge = 0x1000000,
+        SOMHorizonMedium = 0x2000000,
+        SOMHorizonSmall = 0x4000000,
+    };
+
+    [flags]
+    enum CPUFeatures
+    {
+        GENERIC = 0,
+        AVX2 = 4,
+        AVX512 = 8,
+        AVX512VBMI = 16,
+    };
+
+    enum CompilerTune
+    {
+        GENERIC = 0,
+        SNB = 1,
+        IVB = 2,
+        HSW = 3,
+        SLM = 4,
+        BDW = 5,
+        SKL = 6,
+        SKX = 7,
+        GLM = 8,
+        ICL = 9,
+        ICX = 10,
+    };
+
+    runtimeclass ExpressionExtended
+    {
+        ExpressionExtended();
+        UInt64 MinOffset;
+        UInt64 MaxOffset;
+        UInt64 MinLength;
+        UInt64 EditDistance;
+        UInt64 HammingDistance;
+        void Reset();
+    }
+
+    runtimeclass PlatformInfo
+    {
+        PlatformInfo();
+        PlatformInfo(CPUFeatures features, CompilerTune tune);
+        CPUFeatures Features;
+        CompilerTune Tune;
+        static PlatformInfo HostPlatformInfo();
+    }
+
+    runtimeclass ExpressionInfo
+    {
+        ExpressionInfo();
+        ExpressionInfo(UInt32 minWidth, UInt32 maxWidth, Boolean isUnorderedMatches, Boolean isMatchesAtEOD, Boolean isMatchesOnlyAtEOD);
+        UInt32 MinWidth;
+        UInt32 MaxWidth;
+        Boolean IsUnorderedMatches;
+        Boolean IsMatchesAtEOD;
+        Boolean IsMatchesOnlyAtEOD;
+    }
+
+    runtimeclass Pattern
+    {
+        Pattern();
+        Pattern(String expression, CompileFlags flags, ExpressionExtended extended, UInt32 id);
+        String Expression;
+        CompileFlags Flags;
+        ExpressionExtended Extended;
+        UInt32 Id;
+        ExpressionInfo GetExpressionInfo();
+    }
+
+    [default_interface]
+    runtimeclass MatchEventArgs
+    {
+        MatchEventArgs();
+        MatchEventArgs(UInt64 from, UInt64 to, UInt32 id, UInt32 flags);
+        UInt64 From{ get; };
+        UInt64 To{ get; };
+        UInt32 Id{ get; };
+        UInt32 Flags{ get; };
+    }
+
+    interface ICompiler
+    {
+        void Compile(String pattern, CompileFlags flags);
+        void CompileLiteral(String pattern, CompileFlags flags);
+        void CompileMultiLiteral(IVectorView<Pattern> patterns, CompileFlags flags);
+        void CompileMulti(IVectorView<Pattern> patterns, CompileFlags flags);
+        void CompileMultiEx(IVectorView<Pattern> patterns, CompileFlags flags, ExpressionExtended extended);
+    }
+
+    unsealed runtimeclass Compiler: ICompiler
+    {
+        PlatformInfo Platform;
+        event Windows.Foundation.EventHandler<MatchEventArgs> Matched;
+    }
+
+    runtimeclass BlockScanner: Compiler
+    {
+        BlockScanner();
+        void Scan(Windows.Storage.Streams.IBuffer buffer);
+    }
+
+    runtimeclass VectorScanner: Compiler
+    {
+        VectorScanner();
+        void Scan(Windows.Storage.Streams.IBuffer buffer);
+    }
 }
