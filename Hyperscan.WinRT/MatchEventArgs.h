@@ -11,6 +11,7 @@ namespace winrt::Hyperscan::implementation
         wil::single_threaded_property<uint64_t> To;
         wil::single_threaded_property<uint32_t> Id;
         wil::single_threaded_property<uint32_t> Flags;
+        wil::single_threaded_rw_property<uint32_t> ReturnValue;
     };
 }
 

@@ -13,19 +13,13 @@ namespace winrt::Hyperscan::implementation
         void MaxOffset(uint64_t value);
         uint64_t MinLength();
         void MinLength(uint64_t value);
-        uint64_t EditDistance();
-        void EditDistance(uint64_t value);
-        uint64_t HammingDistance();
-        void HammingDistance(uint64_t value);
+        uint32_t EditDistance();
+        void EditDistance(uint32_t value);
+        uint32_t HammingDistance();
+        void HammingDistance(uint32_t value);
         void Reset();
 
-    private:
-        uint64_t flags = 0ULL;
-        uint64_t _minOffset;
-        uint64_t _maxOffset;
-        uint64_t _minLength;
-        uint64_t _editDistance;
-        uint64_t _hammingDistance;
+        hs_expr_ext_t _ext{.flags = 0ULL};
     };
 }
 

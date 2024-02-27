@@ -22,12 +22,14 @@ namespace Hyperscan
         Quiet = 1024,
     };
      
-    [flags]
     enum CompileMode
     {
         Block = 1,
         Stream = 2,
         Vectored = 4,
+    };
+    enum SOMHorizonMode
+    {
         SOMHorizonLarge = 0x1000000,
         SOMHorizonMedium = 0x2000000,
         SOMHorizonSmall = 0x4000000,
@@ -63,8 +65,8 @@ namespace Hyperscan
         UInt64 MinOffset;
         UInt64 MaxOffset;
         UInt64 MinLength;
-        UInt64 EditDistance;
-        UInt64 HammingDistance;
+        UInt32 EditDistance;
+        UInt32 HammingDistance;
         void Reset();
     }
 
@@ -108,20 +110,28 @@ namespace Hyperscan
         UInt64 To{ get; };
         UInt32 Id{ get; };
         UInt32 Flags{ get; };
+        UInt32 ReturnValue;
     }
 
     interface ICompiler
     {
         void Compile(String pattern, CompileFlags flags);
         void CompileLiteral(String pattern, CompileFlags flags);
-        void CompileMultiLiteral(IVectorView<Pattern> patterns, CompileFlags flags);
-        void CompileMulti(IVectorView<Pattern> patterns, CompileFlags flags);
-        void CompileMultiEx(IVectorView<Pattern> patterns, CompileFlags flags, ExpressionExtended extended);
+        void CompileMultiLiteral(IVectorView<Pattern> patterns);
+        void CompileMulti(IVectorView<Pattern> patterns);
+        void CompileMultiEx(IVectorView<Pattern> patterns);
     }
 
-    unsealed runtimeclass Compiler: ICompiler
+    interface IDatabase
+    {
+        String GetDatabaseInfo();
+        UInt64 GetDatabaseSize();
+    }
+
+    unsealed runtimeclass Compiler: ICompiler, IDatabase
     {
         PlatformInfo Platform;
+        SOMHorizonMode SOMHorizon;
         event Windows.Foundation.EventHandler<MatchEventArgs> Matched;
     }
 
@@ -129,11 +139,26 @@ namespace Hyperscan
     {
         BlockScanner();
         void Scan(Windows.Storage.Streams.IBuffer buffer);
+        Windows.Foundation.IAsyncAction ScanAsync(Windows.Storage.Streams.IBuffer buffer);
     }
 
     runtimeclass VectorScanner: Compiler
     {
         VectorScanner();
-        void Scan(Windows.Storage.Streams.IBuffer buffer);
+        void Scan(IVectorView<Windows.Storage.Streams.IBuffer> buffers);
+        Windows.Foundation.IAsyncAction ScanAsync(IVectorView<Windows.Storage.Streams.IBuffer> buffers);
+    }
+
+    runtimeclass SScanner: Windows.Foundation.IClosable
+    {
+        SScanner(StreamScanner streamScanner);
+        void ScanNext(Windows.Storage.Streams.IBuffer buffer);
+        event Windows.Foundation.EventHandler<MatchEventArgs> Matched;
+    }
+
+    runtimeclass StreamScanner: Compiler
+    {
+        StreamScanner();
+        SScanner CreateScanner();
     }
 }

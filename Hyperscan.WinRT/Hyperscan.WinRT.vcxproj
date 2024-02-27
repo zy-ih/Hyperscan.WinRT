@@ -15,7 +15,7 @@
     <ApplicationType>Windows Store</ApplicationType>
     <ApplicationTypeRevision>10.0</ApplicationTypeRevision>
     <WindowsTargetPlatformVersion Condition=" '$(WindowsTargetPlatformVersion)' == '' ">10.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformMinVersion>10.0.19041.0</WindowsTargetPlatformMinVersion>
+    <WindowsTargetPlatformMinVersion>10.0.22000.0</WindowsTargetPlatformMinVersion>
     <DesktopCompatible>true</DesktopCompatible>
     <UseWinUI>true</UseWinUI>
     <CppWinRTProjectLanguage>C++/WinRT</CppWinRTProjectLanguage>
@@ -138,6 +138,8 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="PlatformInfo.h" />
     <ClInclude Include="Settings.h" />
+    <ClInclude Include="SScanner.h" />
+    <ClInclude Include="StreamScanner.h" />
     <ClInclude Include="VectorScanner.h" />
   </ItemGroup>
   <ItemGroup>
@@ -145,15 +147,17 @@
     <ClCompile Include="Compiler.cpp" />
     <ClCompile Include="ExpressionExtended.cpp" />
     <ClCompile Include="ExpressionInfo.cpp" />
+    <ClCompile Include="Generated Files\module.g.cpp" />
     <ClCompile Include="Global.cpp" />
     <ClCompile Include="MatchEventArgs.cpp" />
     <ClCompile Include="Pattern.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
     <ClCompile Include="PlatformInfo.cpp" />
     <ClCompile Include="Settings.cpp" />
+    <ClCompile Include="SScanner.cpp" />
+    <ClCompile Include="StreamScanner.cpp" />
     <ClCompile Include="VectorScanner.cpp" />
   </ItemGroup>
   <ItemGroup>

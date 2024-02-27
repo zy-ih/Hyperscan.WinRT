@@ -7,6 +7,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hyperscan.WinRT", "Hypersca
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Files", "Solution Files", "{E8C24AA3-45C6-4722-B121-2A5694EDF2B5}"
 	ProjectSection(SolutionItems) = preProject
+		.filenesting.json = .filenesting.json
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		README.md = README.md
@@ -15,6 +16,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hyperscan.Tests", "Hyperscan.Tests\Hyperscan.Tests.csproj", "{CFB612EA-A1AC-479B-B473-5FF12396231B}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hyperscan.Console", "Hyperscan.Console\Hyperscan.Console.vcxproj", "{D4EAA3B8-4FCD-418C-966E-1FFFDE3FCC0C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Hyperscan.Sample.Rust", "Hyperscan.Sample.Rust\Hyperscan.Sample.Rust.vcxproj", "{FAC05A90-D415-4776-B725-16ADE858BDF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +65,18 @@ Global
 		{D4EAA3B8-4FCD-418C-966E-1FFFDE3FCC0C}.Release|x64.Build.0 = Release|x64
 		{D4EAA3B8-4FCD-418C-966E-1FFFDE3FCC0C}.Release|x86.ActiveCfg = Release|Win32
 		{D4EAA3B8-4FCD-418C-966E-1FFFDE3FCC0C}.Release|x86.Build.0 = Release|Win32
+		{FAC05A90-D415-4776-B725-16ADE858BDF9}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{FAC05A90-D415-4776-B725-16ADE858BDF9}.Debug|Any CPU.Build.0 = Debug|x64
+		{FAC05A90-D415-4776-B725-16ADE858BDF9}.Debug|x64.ActiveCfg = Debug|x64
+		{FAC05A90-D415-4776-B725-16ADE858BDF9}.Debug|x64.Build.0 = Debug|x64
+		{FAC05A90-D415-4776-B725-16ADE858BDF9}.Debug|x86.ActiveCfg = Debug|Win32
+		{FAC05A90-D415-4776-B725-16ADE858BDF9}.Debug|x86.Build.0 = Debug|Win32
+		{FAC05A90-D415-4776-B725-16ADE858BDF9}.Release|Any CPU.ActiveCfg = Release|x64
+		{FAC05A90-D415-4776-B725-16ADE858BDF9}.Release|Any CPU.Build.0 = Release|x64
+		{FAC05A90-D415-4776-B725-16ADE858BDF9}.Release|x64.ActiveCfg = Release|x64
+		{FAC05A90-D415-4776-B725-16ADE858BDF9}.Release|x64.Build.0 = Release|x64
+		{FAC05A90-D415-4776-B725-16ADE858BDF9}.Release|x86.ActiveCfg = Release|Win32
+		{FAC05A90-D415-4776-B725-16ADE858BDF9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

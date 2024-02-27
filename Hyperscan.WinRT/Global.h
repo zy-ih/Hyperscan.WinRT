@@ -11,7 +11,7 @@ namespace winrt::Hyperscan::Global
 
     struct hyperscan_error :hresult_error
     {
-        hyperscan_error(const hstring& message, const std::source_location& sourceInformation = std::source_location::current()) noexcept: hresult_error{E_FAIL, message, sourceInformation}
+        hyperscan_error(const hstring& message WINRT_IMPL_SOURCE_LOCATION_ARGS) noexcept: hresult_error(hresult{E_FAIL}, message, sourceInformation)
         {
         }
     };

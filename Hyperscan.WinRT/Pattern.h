@@ -15,7 +15,6 @@ namespace winrt::Hyperscan::implementation
         wil::single_threaded_rw_property<Hyperscan::ExpressionExtended> Extended;
         wil::single_threaded_rw_property<uint32_t> Id;
 
-    private:
         std::string _expression;
     };
 }
