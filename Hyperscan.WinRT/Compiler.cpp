@@ -15,13 +15,15 @@ namespace winrt::Hyperscan::implementation
         std::vector<const hs_expr_ext_t*> _exts;
         unsigned int _size;
     };
-
+    // 该函数从模式集合中提取模式信息
     static patterns_info GetPatternsInfo(Windows::Foundation::Collections::IVectorView<Hyperscan::Pattern> const& patterns);
 
     void Compiler::Compile(hstring const& pattern, winrt::Hyperscan::CompileFlags const& flags)
     {
         Global::unique_hs_compile_error compile_error{nullptr};
+        // 编译
         Global::check_hs_error(hs_compile(to_string(pattern).c_str(), std::to_underlying(flags), CompileMode(), &_platform, _dataBase.put(), compile_error.put()), std::move(compile_error));
+        // 分配匹配时需要的内存
         Global::check_hs_error(hs_alloc_scratch(_dataBase.get(), _scratch.put()));
     }
     void Compiler::CompileLiteral(hstring const& pattern, winrt::Hyperscan::CompileFlags const& flags)

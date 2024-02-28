@@ -2,6 +2,7 @@
 
 namespace winrt::Hyperscan::Global
 {
+    // 全局分配/释放函数
     inline hs_alloc_t hs_alloc = malloc;
     inline hs_free_t hs_free = free;
 
@@ -9,6 +10,7 @@ namespace winrt::Hyperscan::Global
     using unique_hs_database = wil::unique_any<hs_database_t*, decltype(&hs_free_database), &hs_free_database>;
     using unique_hs_scratch = wil::unique_any<hs_scratch_t*, decltype(&hs_free_scratch), &hs_free_scratch>;
 
+    // 将 hs_error_t 转换为异常
     struct hyperscan_error :hresult_error
     {
         hyperscan_error(const hstring& message WINRT_IMPL_SOURCE_LOCATION_ARGS) noexcept: hresult_error(hresult{E_FAIL}, message, sourceInformation)

@@ -4,10 +4,13 @@
 
 namespace winrt::Hyperscan::implementation
 {
+    // SScanner 保有暂存和流状态，可以单独设置匹配事件
     struct SScanner : SScannerT<SScanner>
     {
         SScanner(winrt::Hyperscan::StreamScanner const& streamScanner);
         void ScanNext(winrt::Windows::Storage::Streams::IBuffer const& buffer);
+
+        // 为托管环境支持确定性析构
         void Close();
         ~SScanner();
         wil::untyped_event<winrt::Hyperscan::MatchEventArgs> Matched;

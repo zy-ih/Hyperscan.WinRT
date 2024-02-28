@@ -3,6 +3,7 @@
 
 namespace winrt::Hyperscan::implementation
 {
+    // 将 hs_match_event_t 回调转换为事件处理
     struct MatchEventArgs : MatchEventArgsT<MatchEventArgs>
     {
         MatchEventArgs() = default;

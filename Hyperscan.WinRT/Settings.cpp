@@ -6,6 +6,10 @@
 
 namespace winrt::Hyperscan::implementation
 {
+    // 设置外部分配函数作为Hyperscan的分配函数 允许跨abi调用
+    // @param moduleName: 模块名称
+    // @param allocProcName: 分配函数
+    // @param freeProcName: 释放函数
     void Settings::SetAllocator(hstring const& moduleName, hstring const& allocProcName, hstring const& freeProcName)
     {
         wil::unique_hmodule module(GetModuleHandleW(moduleName.c_str()));
